@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Plantilla base{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Esta es la cabecera de mi app</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Inicio</a>
+                </li>
+                <li>
+                    <a href="/saludo/amigo">Saluda</a>
+                </li>
+            </ul>
+            <hr>
+        </nav>
+    </header>
+    <main>
+        <h1>Contenido de mi pagina</h1>
+        {% block content %}{% endblock %}
+        <footer>
+            <hr>
+            2025&copy; IES Las Galletas
+        </footer>
+    </main>
+</body>
+</html>
