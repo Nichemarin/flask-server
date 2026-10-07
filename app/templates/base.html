@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Plantilla base{% endblock %}</title>
 </head>
+
 <body>
     <header>
         <h1>Esta es la cabecera de mi app</h1>
         <nav>
             <ul>
                 <li>
-                    <a href="/">Inicio</a>
+                    <a href="{{ url_for('home') }}">Inicio</a>
                 </li>
                 <li>
-                    <a href="/saludo/amigo">Saluda</a>
+                    <a href="{{ url_for('saludo',  name = 'amigo')}}">Saluda</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('catalogo', nombre='algo')}}">Catalogo</a>
                 </li>
             </ul>
             <hr>
@@ -29,4 +34,5 @@
         </footer>
     </main>
 </body>
+
 </html>
