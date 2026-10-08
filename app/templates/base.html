@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Plantilla base{% endblock %}</title>
+    <link rel ="stylesheet" href="{{ url_for('static', filename = 'css/basic.css')}}">
 </head>
 
 <body>
@@ -22,8 +23,8 @@
                     <a href="{{ url_for('catalogo', nombre='algo')}}">Catalogo</a>
                 </li>
             </ul>
-            <hr>
         </nav>
+        <hr>
     </header>
     <main>
         <h1>Contenido de mi pagina</h1>

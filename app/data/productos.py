@@ -1,0 +1,15 @@
+productos = [
+    {"nombre": "Teclado mecanico", "precio": 49.99, "disponible": True},
+    {"nombre": "Raton", "precio": 29.99, "disponible": False},
+    {"nombre": "Monitor 4K", "precio": 69.99, "disponible": True},
+    {"nombre": "Auriculares Bluetooth", "precio": 79.99, "disponible": True},
+    {"nombre": "Impresora 3D", "precio": 299.99, "disponible": False},
+    {"nombre": "Webcam HD", "precio": 59.99, "disponible": True},
+    {"nombre": "Disco SSD 1TB", "precio": 89.99, "disponible": True},
+    {"nombre": "Router Wi-Fi", "precio": 64.99, "disponible": False},
+    {"nombre": "Silla Gamer", "precio": 149.99, "disponible": True},
+    {"nombre": "Altavoces 2.1", "precio": 109.99, "disponible": True},
+    {"nombre": "Microfono USB", "precio": 39.99, "disponible": False},
+    {"nombre": "Tablet 10", "precio": 199.99, "disponible": True},
+    {"nombre": "Cargador USB-C", "precio": 19.99, "disponible": True},
+]
