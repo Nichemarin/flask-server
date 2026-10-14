@@ -1,9 +1,10 @@
 from data.productos import productos
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, redirect, abort
+from form import loginForm
 
 # Inicializamos la aplicación
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'Jwolfenwasher3.'
 
 # Ruta 1: Devuelve un HTML muy básico
 @app.route("/")
@@ -35,6 +36,9 @@ def catalogo():
 
 @app.route("/catalogo/<int:idProducto>")
 def producto(idProducto):
+    if 0 <= idProducto < productos:
+        abort(404)
+    
     return render_template(
         "productos.html", idProducto=idProducto, producto=productos[idProducto]
     )
@@ -69,7 +73,29 @@ def filtrar_data():
         "catalogo.html", nombre="filtrado", lista_productos=productosFiltrados
     )
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = loginForm()
+
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        print(f"El usuario es {email} con la contrasea {password}")
+
+        return redirect(url_for('gracias'))
+
+    return render_template('login.html', form=form)
+
+@app.route("/gracias")
+def gracias():
+    return render_template("gracias.html")
+
+@app.errorhandler(404)
+def notFound(e):
+    return render_template('404.html'), 404
 if __name__ == "__main__":
+
+
     # host='0.0.0.0' es VITAL en Docker para que el servidor sea accesible desde fuera del contenedor
     # debug=True hará que el servidor se reinicie automáticamente si cambias este archivo
     app.run(host="0.0.0.0", port=5000, debug=True)
