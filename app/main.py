@@ -4,7 +4,8 @@ from form import loginForm
 
 # Inicializamos la aplicación
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Jwolfenwasher3.'
+app.config["SECRET_KEY"] = "Jwolfenwasher3."
+
 
 # Ruta 1: Devuelve un HTML muy básico
 @app.route("/")
@@ -36,26 +37,29 @@ def catalogo():
 
 @app.route("/catalogo/<int:idProducto>")
 def producto(idProducto):
-    if 0 <= idProducto < productos:
-        abort(404)
-    
-    return render_template(
-        "productos.html", idProducto=idProducto, producto=productos[idProducto]
-    )
+    if 0 <= idProducto < len(productos):
+        return render_template(
+            "productos.html", idProducto=idProducto, producto=productos[idProducto]
+        )
+    abort(404)
 
-@app.route("/contacto", methods = ["GET"])
+
+@app.route("/contacto", methods=["GET"])
 def contacto():
     return render_template("contacto.html")
+
 
 @app.route("/contacto", methods=["POST"])
 def contacto_post():
     nombre = request.form.get("nombre")
     mensaje = request.form.get("mensaje")
-    return render_template("contacto-data.html", nombre = nombre, mensaje = mensaje)
+    return render_template("contacto-data.html", nombre=nombre, mensaje=mensaje)
+
 
 @app.route("/filtrar")
 def filtrar():
     return render_template("filtrar.html")
+
 
 @app.route("/filtrar-data", methods=["GET"])
 def filtrar_data():
@@ -73,6 +77,7 @@ def filtrar_data():
         "catalogo.html", nombre="filtrado", lista_productos=productosFiltrados
     )
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = loginForm()
@@ -82,20 +87,22 @@ def login():
         password = form.password.data
         print(f"El usuario es {email} con la contrasea {password}")
 
-        return redirect(url_for('gracias'))
+        return redirect(url_for("gracias"))
 
-    return render_template('login.html', form=form)
+    return render_template("login.html", form=form)
+
 
 @app.route("/gracias")
 def gracias():
     return render_template("gracias.html")
 
+
 @app.errorhandler(404)
 def notFound(e):
-    return render_template('404.html'), 404
+    return render_template("404.html"), 404
+
+
 if __name__ == "__main__":
-
-
     # host='0.0.0.0' es VITAL en Docker para que el servidor sea accesible desde fuera del contenedor
     # debug=True hará que el servidor se reinicie automáticamente si cambias este archivo
     app.run(host="0.0.0.0", port=5000, debug=True)
